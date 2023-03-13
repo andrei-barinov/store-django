@@ -1,5 +1,5 @@
 {% extends 'products/base.html' %}
-{% load static %}
+{% load static cache %}
 
 {% block css %}
     <!-- Custom styles for this template -->
@@ -54,8 +54,8 @@
             </div>
 
             <div class="row">
-
-                {% for product in object_list %}
+                {% cache 30 object_list %}
+                    {% for product in object_list %}
                     <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
                         <a href="#">
@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 {% endfor %}
-
+                {% endcache %}
             </div>
 
 
